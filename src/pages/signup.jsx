@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'; 
+import { Link ,useNavigate} from 'react-router-dom'; 
 import { UserAuth } from '../context/Authcontext';
 
 
@@ -7,12 +7,14 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {user,SignUp}=UserAuth()
+  const {user,signUp}=UserAuth()
+  const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await Signup(email, password);
+      await signUp(email, password);
+      navigate('/')
      
     } catch (error) {
       console.log(error);
@@ -39,7 +41,7 @@ function Signup() {
 
   <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
 <input  onChange={(e)=>setEmail(e.target.value)} className='p-3 my-3 bg-gray-700 rounded' type="email" placeholder='Email' autoComplete='email'></input>
-<input onChange={(e)=>setEmail(e.target.value)} className='p-3 my-3 bg-gray-700 rounded'  type="password" placeholder='password' autoComplete='currentpassword'></input>
+<input onChange={(e)=>setPassword(e.target.value)} className='p-3 my-3 bg-gray-700 rounded'  type="password" placeholder='password' autoComplete='currentpassword'></input>
 <button className='bg-red-600 py-3 my-6 rounded font-bold'>Sign Up</button>
 
 <div className='flex justify-between text-sm text-gray-600'>
