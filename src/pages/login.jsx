@@ -54,6 +54,11 @@ const Login = () => {
  </div>
 
  <p className='py-8'><span className='text-gray-600'>New to Netflix?</span>{''} <Link to='/signup'>Sign Up</Link></p>
+ <h1>Default login details:</h1>
+ <h5>email:<span>shirishapeddigari56@gmail.com</span></h5>
+ <h4>password:siri@$12</h4>
+
+
 
   </form>
 

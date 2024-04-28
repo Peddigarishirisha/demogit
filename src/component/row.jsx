@@ -8,10 +8,16 @@ const Row = ({ title, fetchURL, rowID }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get(fetchURL).then((response) => {
-      setMovies(response.data.results);
-    });
+    axios.get(fetchURL)
+      .then((response) => {
+        console.log(response.data); // Log the response data
+        setMovies(response.data.results);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, [fetchURL]);
+  
   
 
   const slideLeft = () => {

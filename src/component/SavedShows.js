@@ -1,7 +1,3 @@
-// SavedShows.js
-
-// SavedShows.js
-
 import React, { useState, useEffect } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { UserAuth } from '../context/Authcontext';
@@ -13,32 +9,28 @@ const SavedShows = () => {
   const [movies, setMovies] = useState([]);
   const { user } = UserAuth();
 
+  const slideLeft = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+  const slideRight = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
+
+
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
       setMovies(doc.data()?.savedShows || []);
     });
-
     return () => unsubscribe();
   }, [user?.email]);
 
-  const slideLeft = () => {
-    const slider = document.getElementById('slider');
-    if (slider) {
-      slider.scrollLeft -= 500; // Decrease the scrollLeft to move left
-    }
-  };
-
-  const slideRight = () => {
-    const slider = document.getElementById('slider');
-    if (slider) {
-      slider.scrollLeft += 500; // Increase the scrollLeft to move right
-    }
-  };
-
+  const movieRef = doc(db, 'users', `${user?.email}`);
   const deleteShow = async (passedID) => {
     try {
       const result = movies.filter((item) => item.id !== passedID);
-      await updateDoc(doc(db, 'users', `${user?.email}`), {
+      await updateDoc(movieRef, {
         savedShows: result
       });
     } catch (error) {
@@ -56,10 +48,10 @@ const SavedShows = () => {
           size={40}
         />
         <div
-          id='slider'
-          className='w-full h-full overflow-x-auto whitespace-nowrap scroll-smooth scrollbar-hide relative'
+          id={'slider'}
+          className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'
         >
-          {movies.map((item) => (
+           {movies.map((item) => (
             <div
               key={item.id}
               className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'
