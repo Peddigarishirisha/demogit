@@ -7,11 +7,11 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   
-   apiKey: "AIzaSyD3mxcc52KB5F3CIIh1loeaFU7UR1SoN88",
-   authDomain:"netflix-react1-be53d.firebaseapp.com",
-   projectId: "netflix-react1-be53d",
-   storageBucket: "netflix-react1-be53d.appspot.com",
-  messagingSenderId: "528351523732",
+   apiKey: "AIzaSyDJER3Afu7fvJE69Afim0WMYopha-kK2yU",
+   authDomain:"netflix-clone2-9cce1.firebaseapp.com",
+   projectId:  "netflix-clone2-9cce1",
+   storageBucket:"netflix-clone2-9cce1.appspot.com",
+  messagingSenderId:  "122780756261",
   appId: "1:528351523732:web:2f6d2d41642b0744c11581"
 };
 
