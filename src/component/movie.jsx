@@ -5,10 +5,13 @@ import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firest
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-const Movie = ({ item }) => {
+ import { toast } from "react-toastify";
+ 
+ const Movie = ({ item }) => {
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
   const { user } = UserAuth();
+  const navigate = useNavigate();
 
   const movieID = doc(db, 'users', `${user?.email}`);
 
@@ -24,12 +27,16 @@ const Movie = ({ item }) => {
         }),
       });
     } else {
-      alert('Please log in to save a movie');
+      toast.error('Please log in to save a movie');
     }
   };
 
+  const handleNavigate = () => {
+    navigate(`/movie/${item.id}`);
+  };
+
   return (
-    <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'>
+    <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' onClick={handleNavigate}>
       <img
         className='w-full h-auto block'
         src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
@@ -39,7 +46,7 @@ const Movie = ({ item }) => {
         <p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
           {item?.title}
         </p>
-        <p onClick={saveShow}>
+        <p onClick={(e) => {e.stopPropagation(); saveShow();}}>
           {like ? (
             <FaHeart className='absolute top-4 left-4 text-gray-300' />
           ) : (

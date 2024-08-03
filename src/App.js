@@ -6,13 +6,17 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Account from "./pages/account";
 
-import Protectedroute from './component/protectedroute';
+import NavPage from "./pages/Navpage";
 
+import Protectedroute from './component/protectedroute';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
   return (
     <>
+    <ToastContainer></ToastContainer>
     
     <AuthContextProvider>
     <Navbar></Navbar>
@@ -22,6 +26,7 @@ function App() {
 <Route path='/login' element={<Login></Login>} />
 <Route path='/signup' element={<Signup></Signup>} />
 <Route path='/account' element={<Protectedroute><Account /></Protectedroute>} />
+<Route path='/movie/:id' element={<NavPage />} />
 </Routes>
 
     </AuthContextProvider>

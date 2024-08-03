@@ -5,7 +5,7 @@
 import React from 'react'
 import Main from '../component/Main';
 import Row from '../component/row';
-import requests from '../requast';
+import requests from '../requests';
 
 const Home = () => {
   return (
