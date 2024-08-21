@@ -14,6 +14,8 @@ const Navbar = () => {
     }
   };
 
+  console.log(user)
+
   return (
     <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
       <Link to='/' className="text-4xl font-bold cursor-pointer">
@@ -45,19 +47,19 @@ const Navbar = () => {
       </Link>
 
       {user?.email ? (
-        <div>
+        <div className="flex items-center">
           <Link to='/account'>
             <button className="text-white pr-3">{user.email}</button>
           </Link>
-          <button onClick={handleLogout} className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">Logout</button>
+          <button onClick={handleLogout} className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white ml-2">Logout</button>
         </div>
       ) : (
-        <div>
+        <div className="flex items-center">
           <Link to='/login'>
-            <button className="bg-blue-400 px-2 py-2 rounded text-white pr-3 mr-2">Sign In</button>
+            <button className="bg-blue-400 px-3 py-2 rounded text-white mr-2">Sign In</button>
           </Link>
           <Link to='/signup'>
-            <button className="bg-red-600 px-2 py-2 rounded cursor-pointer text-white ml-2">Sign Up</button>
+            <button className="bg-red-600 px-3 py-2 rounded cursor-pointer text-white">Sign Up</button>
           </Link>
         </div>
       )}
